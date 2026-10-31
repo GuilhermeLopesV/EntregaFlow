@@ -1,0 +1,39 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build output
+dist/
+build/
+coverage/
+.next/
+.nuxt/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# Operating system
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+.vscode/
+.idea/
