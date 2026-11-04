@@ -1,0 +1,9 @@
+{
+  "name": "entregaflow",
+  "private": true,
+  "scripts": {
+    "app": "npm --prefix frontend/android-app run web",
+    "app:android": "npm --prefix frontend/android-app run android",
+    "setup:app": "npm --prefix frontend/android-app install"
+  }
+}
