@@ -13,6 +13,8 @@ build/
 coverage/
 .next/
 .nuxt/
+.expo/
+frontend/android-app/.expo/
 
 # Python
 __pycache__/
