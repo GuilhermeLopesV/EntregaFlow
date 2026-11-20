@@ -1,25 +1,11 @@
-# EntregaFlow App Android
+# Sample Snack app
 
-Este aplicativo Expo fica separado do frontend web em `frontend/` e pode ser
-visualizado no navegador ou executado em um emulador Android.
+Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
 
-## Visualizar no navegador
+When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
 
-No terminal, a partir desta pasta:
+All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
 
-```powershell
-npm install
-npm run web
-```
+If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
 
-O Expo inicia o servidor e informa o endereço local para abrir no navegador.
-
-## Executar no Android
-
-Com o Android Studio/emulador configurado, execute:
-
-```powershell
-npm run android
-```
-
-Para abrir o frontend web original, abra `frontend/index.html`.
+Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
