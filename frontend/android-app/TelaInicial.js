@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   View,
@@ -20,7 +19,7 @@ export default function TelaInicial() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.content}
         >
-          {/* CABEÇALHO */}
+          
           <View style={styles.header}>
             <View style={{ flex: 1 }}>
               <Text style={styles.date}>
@@ -36,14 +35,12 @@ export default function TelaInicial() {
             </View>
           </View>
 
-          {/* LOJA */}
           <TouchableOpacity style={styles.storeSelector}>
             <Text style={styles.storeIcon}>⌂</Text>
             <Text style={styles.storeName}>São Conrado</Text>
             <Text style={styles.chevron}>⌄</Text>
           </TouchableOpacity>
 
-          {/* CONTAGEM DE NOTAS */}
           <View style={styles.statsCard}>
             <View style={styles.statsHeader}>
               <Text style={styles.statsTitle}>Suas notas hoje</Text>
@@ -67,7 +64,7 @@ export default function TelaInicial() {
             </View>
           </View>
 
-          {/* FOTOS PENDENTES */}
+          
           <TouchableOpacity style={styles.pendingCard}>
             <Text style={styles.pendingIcon}>▧</Text>
 
@@ -83,7 +80,6 @@ export default function TelaInicial() {
             <Text style={styles.pendingArrow}>›</Text>
           </TouchableOpacity>
 
-          {/* ADICIONAR NOTAS */}
           <TouchableOpacity style={styles.addButton}>
             <Text style={styles.cameraIcon}>▣</Text>
             <Text style={styles.addButtonText}>
@@ -91,7 +87,6 @@ export default function TelaInicial() {
             </Text>
           </TouchableOpacity>
 
-          {/* ÚLTIMOS ENVIOS */}
           <View style={styles.historyHeader}>
             <Text style={styles.historyTitle}>
               Últimos envios
@@ -132,7 +127,6 @@ export default function TelaInicial() {
           </View>
         </ScrollView>
 
-        {/* MENU INFERIOR */}
         <View style={styles.bottomMenu}>
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.activeIcon}>
@@ -172,72 +166,72 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: '8%',
-    paddingTop: 35,
-    paddingBottom: 25,
+    paddingTop: 23,
+    paddingBottom: 16,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 48,
+    marginBottom: 32,
   },
   date: {
     color: '#858D8B',
-    fontSize: 17,
-    marginBottom: 18,
+    fontSize: 13,
+    marginBottom: 12,
   },
   greeting: {
-    fontSize: 35,
+    fontSize: 24,
     fontWeight: '800',
     color: '#142C29',
     letterSpacing: -1,
   },
   avatar: {
-    width: 82,
-    height: 82,
-    borderRadius: 50,
+    width: 54,
+    height: 54,
+    borderRadius: 33,
     backgroundColor: '#E4F1ED',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 8,
+    marginLeft: 5,
   },
   avatarText: {
     color: '#176F63',
-    fontSize: 26,
+    fontSize: 18,
     fontWeight: '800',
   },
   storeSelector: {
-    height: 94,
+    height: 62,
     backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
     borderColor: '#E0E5E2',
-    borderRadius: 23,
+    borderRadius: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 24,
-    marginBottom: 36,
+    paddingHorizontal: 16,
+    marginBottom: 24,
   },
   storeIcon: {
     color: '#176F63',
-    fontSize: 36,
-    marginRight: 20,
+    fontSize: 24,
+    marginRight: 13,
   },
   storeName: {
     flex: 1,
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: '700',
     color: '#172E2B',
   },
   chevron: {
     color: '#78817F',
-    fontSize: 34,
+    fontSize: 23,
   },
   statsCard: {
     backgroundColor: '#10554D',
-    borderRadius: 38,
-    padding: 35,
-    marginBottom: 35,
-    minHeight: 390,
+    borderRadius: 25,
+    padding: 23,
+    marginBottom: 23,
+    minHeight: 257,
     justifyContent: 'space-between',
   },
   statsHeader: {
@@ -247,192 +241,192 @@ const styles = StyleSheet.create({
   },
   statsTitle: {
     color: '#FFFFFF',
-    fontSize: 24,
+    fontSize: 16,
   },
   receiptIcon: {
     color: '#D2E8E0',
-    fontSize: 36,
+    fontSize: 24,
   },
   numberContainer: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    marginTop: 15,
-    marginBottom: 22,
+    marginTop: 10,
+    marginBottom: 15,
   },
   number: {
     color: '#FFFFFF',
-    fontSize: 125,
+    fontSize: 85,
     fontWeight: '300',
-    lineHeight: 140,
+    lineHeight: 95,
   },
   numberDescription: {
     color: '#C5DAD4',
-    fontSize: 21,
-    marginLeft: 12,
-    marginBottom: 16,
+    fontSize: 14,
+    marginLeft: 8,
+    marginBottom: 11,
     flexShrink: 1,
   },
   statsDivider: {
-    height: 1.5,
+    height: 1,
     backgroundColor: '#39776E',
-    marginBottom: 20,
+    marginBottom: 13,
   },
   lastUpdate: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 8,
   },
   checkIcon: {
     color: '#D2E8E0',
-    fontSize: 27,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   updateText: {
     color: '#C5DAD4',
-    fontSize: 17,
+    fontSize: 13,
     flexShrink: 1,
   },
   pendingCard: {
-    minHeight: 140,
+    minHeight: 92,
     backgroundColor: '#F8F0DC',
-    borderRadius: 35,
+    borderRadius: 23,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 25,
-    marginBottom: 36,
+    paddingHorizontal: 16,
+    marginBottom: 24,
   },
   pendingIcon: {
     color: '#92713E',
-    fontSize: 44,
-    marginRight: 18,
+    fontSize: 30,
+    marginRight: 12,
   },
   pendingTitle: {
     color: '#263A32',
-    fontSize: 22,
-    marginBottom: 10,
+    fontSize: 15,
+    marginBottom: 7,
   },
   pendingDescription: {
     color: '#927A53',
-    fontSize: 17,
+    fontSize: 13,
   },
   pendingArrow: {
     color: '#92713E',
-    fontSize: 38,
-    marginLeft: 8,
+    fontSize: 26,
+    marginLeft: 5,
   },
   addButton: {
-    height: 104,
+    height: 69,
     backgroundColor: '#176F63',
-    borderRadius: 24,
+    borderRadius: 16,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 45,
-    gap: 18,
+    marginBottom: 30,
+    gap: 12,
   },
   cameraIcon: {
     color: '#FFFFFF',
-    fontSize: 32,
+    fontSize: 22,
   },
   addButtonText: {
     color: '#FFFFFF',
-    fontSize: 25,
+    fontSize: 17,
   },
   historyHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 25,
+    marginBottom: 16,
   },
   historyTitle: {
     color: '#172E2B',
-    fontSize: 28,
+    fontSize: 19,
   },
   historyLink: {
     color: '#176F63',
-    fontSize: 18,
+    fontSize: 13,
   },
   historyItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 25,
+    marginBottom: 16,
   },
   historyIconBox: {
-    width: 75,
-    height: 75,
+    width: 50,
+    height: 50,
     backgroundColor: '#FFFFFF',
-    borderRadius: 20,
+    borderRadius: 13,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 18,
+    marginRight: 12,
   },
   historyIcon: {
     color: '#176F63',
-    fontSize: 37,
+    fontSize: 25,
   },
   historyInfo: {
     flex: 1,
   },
   historyCount: {
     color: '#172E2B',
-    fontSize: 22,
+    fontSize: 15,
     fontWeight: '700',
-    marginBottom: 7,
+    marginBottom: 5,
   },
   historyDate: {
     color: '#858D8B',
-    fontSize: 18,
+    fontSize: 13,
   },
   statusBadge: {
     backgroundColor: '#E5F2EE',
-    paddingVertical: 10,
-    paddingHorizontal: 12,
-    borderRadius: 30,
+    paddingVertical: 7,
+    paddingHorizontal: 8,
+    borderRadius: 20,
   },
   statusText: {
     color: '#176F63',
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: '700',
   },
   bottomMenu: {
-    height: 105,
+    height: 69,
     backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
     borderTopColor: '#E4E7E5',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: 5,
+    paddingHorizontal: 3,
   },
   menuItem: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 5,
+    gap: 3,
   },
   activeIcon: {
     backgroundColor: '#E4F2ED',
-    width: 85,
-    height: 48,
-    borderRadius: 30,
+    width: 56,
+    height: 32,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   activeMenuIcon: {
     color: '#176F63',
-    fontSize: 34,
+    fontSize: 23,
   },
   activeMenuText: {
     color: '#176F63',
-    fontSize: 17,
+    fontSize: 13,
     fontWeight: '700',
   },
   menuIcon: {
     color: '#78817F',
-    fontSize: 35,
+    fontSize: 24,
   },
   menuText: {
     color: '#78817F',
-    fontSize: 17,
+    fontSize: 13,
   },
 });
