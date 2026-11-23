@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,7 +9,15 @@ import {
   StatusBar,
 } from 'react-native';
 
+import TelaLoja from './TelaLoja';
+
 export default function TelaInicial() {
+  const [tela, setTela] = useState('inicio');
+
+  if (tela === 'loja') {
+    return <TelaLoja aoNavegar={setTela} />;
+  }
+
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="dark-content" backgroundColor="#F6F8F6" />
@@ -35,7 +43,10 @@ export default function TelaInicial() {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.storeSelector}>
+          <TouchableOpacity
+            style={styles.storeSelector}
+            onPress={() => setTela('loja')}
+          >
             <Text style={styles.storeIcon}>⌂</Text>
             <Text style={styles.storeName}>São Conrado</Text>
             <Text style={styles.chevron}>⌄</Text>
@@ -145,7 +156,10 @@ export default function TelaInicial() {
             <Text style={styles.menuText}>Histórico</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => setTela('loja')}
+          >
             <Text style={styles.menuIcon}>⌂</Text>
             <Text style={styles.menuText}>Loja</Text>
           </TouchableOpacity>

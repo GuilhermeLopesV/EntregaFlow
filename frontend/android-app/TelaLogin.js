@@ -68,7 +68,6 @@ export default function TelaLogin() {
  
 
   useEffect(() => {
-    signOut(auth);
     const cancelar = onAuthStateChanged(auth, (user) => {
       setUsuarioLogado(user);
       setVerificandoSessao(false);
