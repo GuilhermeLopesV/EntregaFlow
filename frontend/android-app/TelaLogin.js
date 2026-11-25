@@ -71,7 +71,6 @@ export default function TelaLogin() {
     const cancelar = onAuthStateChanged(auth, (user) => {
       setUsuarioLogado(user);
       setVerificandoSessao(false);
-      setCarregando(false);
     });
     return cancelar;
   }, []);
