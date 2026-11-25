@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import TelaLoja from './TelaLoja';
+import Historico from './TelaHistorico';
 
 export default function TelaInicial({ aoSair }) {
   const [tela, setTela] = useState('inicio');
@@ -32,7 +33,11 @@ export default function TelaInicial({ aoSair }) {
   if (tela === 'loja') {
     return <TelaLoja aoNavegar={setTela} />;
   }
-
+  
+if (tela === 'historico') {
+    return <Historico aoNavegar={setTela} />;
+  }
+  
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="dark-content" backgroundColor="#F6F8F6" />
@@ -130,7 +135,7 @@ export default function TelaInicial({ aoSair }) {
             <Text style={styles.historyTitle}>
               Últimos envios
             </Text>
-            <TouchableOpacity>
+          <TouchableOpacity onPress={() => setTela('historico')}>
               <Text style={styles.historyLink}>Ver histórico</Text>
             </TouchableOpacity>
           </View>
@@ -179,7 +184,10 @@ export default function TelaInicial({ aoSair }) {
             <Text style={styles.menuText}>Adicionar</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => setTela('historico')}
+          >
             <Text style={styles.menuIcon}>▥</Text>
             <Text style={styles.menuText}>Histórico</Text>
           </TouchableOpacity>
