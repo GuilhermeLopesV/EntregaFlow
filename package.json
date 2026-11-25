@@ -1,12 +1,10 @@
 {
   "name": "entregaflow",
   "private": true,
-  "scripts": {
-    "app": "npm --prefix frontend/android-app run web",
-    "app:android": "npm --prefix frontend/android-app run android",
-    "setup:app": "npm --prefix frontend/android-app install"
-  },
-  "dependencies": {
-    "expo": "^58.0.26"
+"scripts": {
+  "app": "npm --prefix frontend/android-app run web",
+  "app:mobile": "npm --prefix frontend/android-app start",
+  "app:android": "npm --prefix frontend/android-app run android",
+  "setup:app": "npm --prefix frontend/android-app install"
   }
 }

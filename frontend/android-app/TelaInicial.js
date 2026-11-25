@@ -7,12 +7,27 @@ import {
   StyleSheet,
   SafeAreaView,
   StatusBar,
+  Alert,
 } from 'react-native';
 
 import TelaLoja from './TelaLoja';
 
-export default function TelaInicial() {
+export default function TelaInicial({ aoSair }) {
   const [tela, setTela] = useState('inicio');
+  const [saindo, setSaindo] = useState(false);
+
+  async function handleSair() {
+    setSaindo(true);
+    try {
+      await aoSair();
+    } catch {
+      Alert.alert(
+        'Não foi possível sair',
+        'Tente novamente para encerrar sua sessão.'
+      );
+      setSaindo(false);
+    }
+  }
 
   if (tela === 'loja') {
     return <TelaLoja aoNavegar={setTela} />;
@@ -38,8 +53,21 @@ export default function TelaInicial() {
               </Text>
             </View>
 
-            <View style={styles.avatar}>
-              <Text style={styles.avatarText}>US</Text>
+            <View style={styles.headerActions}>
+              <View style={styles.avatar}>
+                <Text style={styles.avatarText}>US</Text>
+              </View>
+              <TouchableOpacity
+                style={[styles.logoutButton, saindo && styles.logoutButtonDisabled]}
+                accessibilityRole="button"
+                accessibilityLabel="Sair da conta"
+                disabled={saindo}
+                onPress={handleSair}
+              >
+                <Text style={styles.logoutText}>
+                  {saindo ? 'Saindo...' : 'Sair'}
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
 
@@ -189,6 +217,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 32,
   },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
   date: {
     color: '#858D8B',
     fontSize: 13,
@@ -213,6 +246,20 @@ const styles = StyleSheet.create({
     color: '#176F63',
     fontSize: 18,
     fontWeight: '800',
+  },
+  logoutButton: {
+    backgroundColor: '#E4F1ED',
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+  },
+  logoutButtonDisabled: {
+    opacity: 0.6,
+  },
+  logoutText: {
+    color: '#176F63',
+    fontSize: 14,
+    fontWeight: '700',
   },
   storeSelector: {
     height: 62,
