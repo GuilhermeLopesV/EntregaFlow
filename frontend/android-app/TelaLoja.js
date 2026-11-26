@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -22,7 +22,7 @@ import {
 } from './LojaService';
 
 
-export default function TelaLoja({ aoNavegar, mostrarMenu = true }) {
+export default function TelaLoja({ aoNavegar }) {
   const [lojas, setLojas] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
@@ -221,31 +221,29 @@ export default function TelaLoja({ aoNavegar, mostrarMenu = true }) {
           )}
         </ScrollView>
 
-        {mostrarMenu && (
-          <View style={styles.bottomMenu}>
-            <TouchableOpacity style={styles.menuItem} onPress={() => aoNavegar?.('inicio')}>
-              <Text style={styles.menuIcon}>⌂</Text>
-              <Text style={styles.menuText}>Início</Text>
-            </TouchableOpacity>
+        <View style={styles.bottomMenu}>
+          <TouchableOpacity style={styles.menuItem} onPress={() => aoNavegar?.('inicio')}>
+            <Text style={styles.menuIcon}>⌂</Text>
+            <Text style={styles.menuText}>Início</Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={styles.menuItem} onPress={() => aoNavegar?.('adicionar')}>
-              <Text style={styles.menuIcon}>⊕</Text>
-              <Text style={styles.menuText}>Adicionar</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem} onPress={() => aoNavegar?.('adicionar')}>
+            <Text style={styles.menuIcon}>⊕</Text>
+            <Text style={styles.menuText}>Adicionar</Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={styles.menuItem} onPress={() => aoNavegar?.('historico')}>
-              <Text style={styles.menuIcon}>▥</Text>
-              <Text style={styles.menuText}>Histórico</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem} onPress={() => aoNavegar?.('historico')}>
+            <Text style={styles.menuIcon}>▥</Text>
+            <Text style={styles.menuText}>Histórico</Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={styles.menuItem}>
-              <View style={styles.activeIcon}>
-                <Text style={styles.activeMenuIcon}>⌂</Text>
-              </View>
-              <Text style={styles.activeMenuText}>Loja</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+          <TouchableOpacity style={styles.menuItem}>
+            <View style={styles.activeIcon}>
+              <Text style={styles.activeMenuIcon}>⌂</Text>
+            </View>
+            <Text style={styles.activeMenuText}>Loja</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <Modal

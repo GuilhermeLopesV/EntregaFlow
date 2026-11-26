@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -23,7 +23,7 @@ import {
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 import { auth, db } from './firebase/firebaseconfig';
-import TelaInicial from './TelaInicial';
+import TelaPrincipal from './TelaPrincipal';
 
 const BARRAS_CODIGO = [3, 5, 2, 4, 3, 5, 2, 4, 3, 5, 2, 4];
 const TAMANHO_MINIMO_SENHA = 8;
@@ -71,6 +71,7 @@ export default function TelaLogin() {
     const cancelar = onAuthStateChanged(auth, (user) => {
       setUsuarioLogado(user);
       setVerificandoSessao(false);
+      setCarregando(false);
     });
     return cancelar;
   }, []);
@@ -186,7 +187,7 @@ export default function TelaLogin() {
   }
 
   if (usuarioLogado) {
-    return <TelaInicial aoSair={() => signOut(auth)} />;
+    return <TelaPrincipal aoSair={() => signOut(auth)} />;
   }
 
   return (
