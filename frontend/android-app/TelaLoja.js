@@ -21,16 +21,13 @@ import {
   removerLoja,
 } from './LojaService';
 
-// Props:
-// - aoNavegar(tela): usada pelo menu inferior ('inicio' | 'adicionar' | 'historico')
-// - mostrarMenu: use false se o menu inferior já vier de um Tab Navigator
+
 export default function TelaLoja({ aoNavegar, mostrarMenu = true }) {
   const [lojas, setLojas] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
-  // Modal do formulário (nova loja / editar loja)
   const [modalAberto, setModalAberto] = useState(false);
-  const [editandoId, setEditandoId] = useState(null); // null = nova loja
+  const [editandoId, setEditandoId] = useState(null);
   const [nome, setNome] = useState('');
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
@@ -39,7 +36,6 @@ export default function TelaLoja({ aoNavegar, mostrarMenu = true }) {
   const [salvando, setSalvando] = useState(false);
   const [erroModal, setErroModal] = useState('');
 
-  // Modal de opções (editar / remover)
   const [lojaSelecionada, setLojaSelecionada] = useState(null);
   const [confirmandoRemocao, setConfirmandoRemocao] = useState(false);
   const [removendo, setRemovendo] = useState(false);
@@ -65,7 +61,6 @@ export default function TelaLoja({ aoNavegar, mostrarMenu = true }) {
     };
   }, []);
 
-  // ---------- Formulário ----------
   function abrirModal() {
     setEditandoId(null);
     setNome('');
@@ -125,7 +120,6 @@ export default function TelaLoja({ aoNavegar, mostrarMenu = true }) {
     }
   }
 
-  // ---------- Opções (editar / remover) ----------
   function abrirOpcoes(loja) {
     setErroOpcoes('');
     setConfirmandoRemocao(false);
@@ -254,7 +248,6 @@ export default function TelaLoja({ aoNavegar, mostrarMenu = true }) {
         )}
       </View>
 
-      {/* Modal: opções da loja (editar / remover) */}
       <Modal
         visible={lojaSelecionada !== null}
         transparent
@@ -341,7 +334,6 @@ export default function TelaLoja({ aoNavegar, mostrarMenu = true }) {
         </View>
       </Modal>
 
-      {/* Modal: formulário (nova loja / editar loja) */}
       <Modal
         visible={modalAberto}
         transparent
@@ -569,7 +561,6 @@ const styles = StyleSheet.create({
   },
   saveText: { color: '#FFFFFF', fontSize: 17, fontWeight: '700' },
 
-  // Opções (editar / remover)
   optionRow: {
     height: 54,
     borderRadius: 14,

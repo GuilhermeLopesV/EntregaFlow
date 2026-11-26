@@ -39,3 +39,9 @@ Desktop.ini
 # Editors and IDEs
 .vscode/
 .idea/
+node_modules/
+.expo/
+node_modules/
+.expo/
+node_modules/
+.expo/
