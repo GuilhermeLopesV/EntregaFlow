@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -42,7 +42,7 @@ function chaveDoDia(d) {
 
 export default function Historico({ aoNavegar }) {
   const [periodo, setPeriodo] = useState('Últimos 7 dias');
-  const [loja, setLoja] = useState('Todas as lojas');
+  const [lojaId, setLojaId] = useState(null);
   const [mostrarDias, setMostrarDias] = useState(false);
   const [seletorPeriodo, setSeletorPeriodo] = useState(false);
 
@@ -50,6 +50,10 @@ export default function Historico({ aoNavegar }) {
   const [lojas, setLojas] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState('');
+  const lojaSelecionada = lojas.find((l) => l.id === lojaId);
+  const rotuloLoja = lojaId
+    ? lojaSelecionada?.nome || 'Loja não disponível'
+    : 'Todas as lojas';
 
   useEffect(() => {
     let ativo = true;
@@ -87,7 +91,10 @@ export default function Historico({ aoNavegar }) {
   }
 
   const notasFiltradas = notas.filter(
-    (n) => n.enviadoEm >= inicio && (loja === 'Todas as lojas' || n.lojaNome === loja)
+    (n) =>
+      n.enviadoEm instanceof Date &&
+      n.enviadoEm >= inicio &&
+      (lojaId === null || n.lojaId === lojaId)
   );
 
   // Agrupa por dia (mais recente primeiro)
@@ -100,7 +107,6 @@ export default function Historico({ aoNavegar }) {
         data: `${doisDigitos(n.enviadoEm.getDate())}/${doisDigitos(n.enviadoEm.getMonth() + 1)}`,
         semana: NOMES_SEMANA[n.enviadoEm.getDay()],
         quantidade: 0,
-        pendentes: 0,
         totalCentavos: 0,
       };
     }
@@ -139,9 +145,9 @@ export default function Historico({ aoNavegar }) {
   }
 
   function alterarLoja() {
-    const nomes = ['Todas as lojas', ...new Set(lojas.map((l) => l.nome))];
-    const atual = nomes.indexOf(loja);
-    setLoja(nomes[(atual + 1) % nomes.length]);
+    const ids = [null, ...lojas.map((l) => l.id)];
+    const atual = ids.indexOf(lojaId);
+    setLojaId(ids[(atual + 1) % ids.length]);
   }
 
   function abrirDia(dia) {
@@ -187,7 +193,7 @@ export default function Historico({ aoNavegar }) {
               onPress={alterarLoja}
             >
               <Text style={styles.filterIcon}>⌂</Text>
-              <Text style={styles.filterText}>{loja}</Text>
+              <Text style={styles.filterText}>{rotuloLoja}</Text>
               <Text style={styles.chevron}>⌄</Text>
             </TouchableOpacity>
           </View>
@@ -264,11 +270,6 @@ export default function Historico({ aoNavegar }) {
           {dia.semana} · {formatarReais(dia.totalCentavos)}
         </Text>
 
-        {dia.pendentes > 0 && (
-          <Text style={styles.pendingText}>
-            {dia.pendentes} fotos para enviar · não contabilizadas
-          </Text>
-        )}
       </View>
 
       <Text style={styles.dayQuantity}>
@@ -525,11 +526,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 
-  activeBarLabel: {
-    color: '#176F63',
-    fontWeight: '800',
-  },
-
   historyHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -573,11 +569,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 
-  pendingText: {
-    color: '#927A53',
-    fontSize: 11,
-    marginTop: 5,
-  },
 
   dayQuantity: {
     color: '#172E2B',

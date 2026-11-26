@@ -1,8 +1,6 @@
 import {
-  Timestamp,
   collection,
   doc,
-  getDoc,
   getDocs,
   limit,
   orderBy,
@@ -107,22 +105,8 @@ function converterNota(documento) {
   return {
     id: documento.id,
     ...dados,
-    enviadoEm: dados.enviadoEm?.toDate ? dados.enviadoEm.toDate() : new Date(),
+    enviadoEm: dados.enviadoEm?.toDate ? dados.enviadoEm.toDate() : null,
   };
-}
-
-export async function carregarNotasDeHoje() {
-  const uid = uidAtual();
-
-  const inicioDoDia = new Date();
-  inicioDoDia.setHours(0, 0, 0, 0);
-
-  const q = query(
-    collection(db, 'usuarios', uid, 'notas'),
-    where('enviadoEm', '>=', Timestamp.fromDate(inicioDoDia))
-  );
-  const snap = await getDocs(q);
-  return snap.docs.map(converterNota);
 }
 
 export async function carregarUltimasNotas(quantidade = 30) {
@@ -137,12 +121,39 @@ export async function carregarUltimasNotas(quantidade = 30) {
   return snap.docs.map(converterNota);
 }
 
-export async function carregarFotoDaNota(notaId) {
-  const uid = uidAtual();
+export async function carregarResumoDashboard(lojaId) {
+  if (!lojaId) {
+    return {
+      quantidadeHoje: 0,
+      ultimoEnvio: null,
+      recentes: [],
+    };
+  }
 
-  const snap = await getDoc(doc(db, 'usuarios', uid, 'notas', notaId, 'anexos', 'foto'));
-  if (!snap.exists()) return null;
+  const q = query(
+    collection(db, 'usuarios', uidAtual(), 'notas'),
+    where('lojaId', '==', lojaId)
+  );
+  const snap = await getDocs(q);
+  const notasDaLoja = snap.docs
+    .map(converterNota)
+    .filter(
+      (nota) =>
+        nota.enviadoEm instanceof Date &&
+        !Number.isNaN(nota.enviadoEm.getTime())
+    );
+  const inicioDoDia = new Date();
+  inicioDoDia.setHours(0, 0, 0, 0);
+  const quantidadeHoje = notasDaLoja.filter(
+    (nota) => nota.enviadoEm >= inicioDoDia
+  ).length;
+  const recentes = [...notasDaLoja]
+    .sort((a, b) => b.enviadoEm.getTime() - a.enviadoEm.getTime())
+    .slice(0, 5);
 
-  const { base64, mimeType } = snap.data();
-  return `data:${mimeType || 'image/jpeg'};base64,${base64}`;
+  return {
+    quantidadeHoje,
+    ultimoEnvio: recentes[0]?.enviadoEm || null,
+    recentes,
+  };
 }
